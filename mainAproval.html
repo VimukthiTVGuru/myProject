@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Set Name</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.4.0/dist/web3.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" 
+	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  
+	<style>
+		/* Style the table */
+		table {
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+
+		th, td {
+		  text-align: left;
+		  padding: 8px;
+		}
+
+		th {
+		  background-color: #4CAF50;
+		  color: white;
+		}
+
+		tr:nth-child(even){background-color: #f2f2f2}
+		/* Style the close button */
+		.close {
+		  position: absolute;
+		  top: 0;
+		  right: 0;
+		  padding: 12px 16px;
+		  font-size: 20px;
+		  font-weight: bold;
+		  cursor: pointer;
+		  background-color: #f44336;
+		  color: white;
+		}
+	
+        * {
+          box-sizing: border-box;
+        }
+        
+        #regForm {
+          font-family: Raleway;
+          padding: 40px;
+          width: 50%;
+          min-width: 300px;
+
+        }
+        
+        h1 {
+          text-align: center;  
+        }
+        
+        input {
+          padding: 10px;
+          width: 100%;
+          font-size: 17px;
+          font-family: Raleway;
+          border: 1px solid #aaaaaa;
+        }
+        
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid {
+          background-color: #ffdddd;
+        }
+        
+        /* Hide all steps by default: */
+        .tab {
+          display: none;
+        }
+        
+        button {
+          background-color: rgb(187, 45, 59);
+          color: #ffffff;
+          border: none;
+          padding: 10px 20px;
+          font-size: 17px;
+          font-family: Raleway;
+          cursor: pointer;
+		  margin-top: 20px;
+        }
+        
+        button:hover {
+          opacity: 0.8;
+        }
+        
+        #prevBtn {
+          background-color: #bbbbbb;
+        }
+        
+        /* Make circles that indicate the steps of the form: */
+        .step {
+          height: 15px;
+          width: 15px;
+          margin: 0 2px;
+          background-color: #bbbbbb;
+          border: none;  
+          border-radius: 50%;
+          display: inline-block;
+          opacity: 0.5;
+        }
+        
+        .step.active {
+          opacity: 1;
+        }
+        
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+          background-color: #04AA6D;
+        }
+        #abcd{
+            left: 0%;
+        }
+		#log {
+
+  background-image: linear-gradient(
+    to right,
+    #eeefef,
+    #d2d5d7,
+    #c3c5c4,
+    #b2b3b4,
+    #b6b8b8
+  );
+  overflow: hidden;
+  height: 740px;
+}
+#log h2 {
+          color: #fdfcfc;
+        }
+        </style>
+</head>
+  <body>
+	<div id="log">
+	<h2 class="text-center">Deed Approval</h2>
+    <h1 id="ishu"></h1>
+	<div id="main">
+		<div>
+			<form id="regForm">
+				<div class="tab">
+					<label>Title ID</label>
+					<input type="text" id="nameInput1" placeholder="Title ID" required>
+					<label>B.F Title ID</label>
+					<input type="text" id="nameInput2" placeholder="B.F Title ID"  required>
+					<label>Land Name</label>
+					<input type="text" id="nameInput3" placeholder="Land Name"  required>
+					<label>Plan No</label>
+					<input type="text" id="nameInput4" placeholder="Plan No"  required>
+				</div>
+				<div class="tab">
+					<label>Serveyor Name</label>
+					<input type="text" id="nameInput5" placeholder="Serveyor Name"  required>
+					<label>Province</label>
+					<input type="text" id="nameInput6" placeholder="Province"  required>
+					<label>District</label>
+					<input type="text" id="nameInput7" placeholder="District"  required>
+					<label>D.S Division</label>
+					<input type="text" id="nameInput8" placeholder="D.S Division"  required>
+					<label>G.N Division</label>
+					<input type="text" id="nameInput9" placeholder="G.N Division"  required>
+				  </div>
+				  <div class="tab">
+					<label>Local Authority</label>
+					<input type="text" id="nameInput10" placeholder="Local Authority"  required>
+					<label>Lot No</label>
+					<input type="text" id="nameInput11" placeholder="Lot No"  required>
+					<label>Asst No</label>
+					<input type="text" id="nameInput13" placeholder="Asst No"  required>
+				  </div>
+				  <div class="tab">
+					<label>Village and Street</label>
+					<input type="text" id="nameInput14" placeholder="Village and Street"  required>
+					<label>Pattu</label>
+					<input type="text" id="nameInput15" placeholder="Pattu"  required>
+					<label>Korala</label>
+					<input type="text" id="nameInput16" placeholder="Korala"  required>
+				  </div>
+				  <div class="tab">
+					<label>Boudaries North</label>
+					<input type="text" id="nameInput17" placeholder="Boudaries North"  required>
+					<label>Boudaries West</label>
+					<input type="text" id="nameInput18" placeholder="Boudaries West"  required>
+					<label>Boudaries South</label>
+					<input type="text" id="nameInput19" placeholder="Boudaries South"  required>
+					<label>Boudaries East</label>
+					<input type="text" id="nameInput20" placeholder="Boudaries East"  required>
+				</div>
+				<div class="tab">
+					<label>Date of Registry</label>
+					<input type="text" id="nameInput21" placeholder="Date of Registry"  required>
+					<label>Givers</label>
+					<input type="text" id="nameInput22" placeholder="Givers"  required>
+					<label>Recipients</label>
+					<input type="text" id="nameInput23" placeholder="Recipients"  required>
+					<label>T.P No</label>
+					<input type="text" id="nameInput12" placeholder="T.P No"  required>	
+				</div>
+				<div class="tab">
+					<label>Nature</label>
+					<input type="text" id="nameInput24" placeholder="Nature and Particulars of Alienations and Income Ranges"  required>
+					<label>Deed No</label>
+					<input type="text" id="nameInput25" placeholder="Deed No"  required>
+					<label>Notary Name</label>
+					<input type="text" id="nameInput26" placeholder="Notary Name"  required>
+					<label>Stamp Duty</label>
+					<input type="text" id="nameInput27" placeholder="Stamp Duty"  required>
+					<label>Signature of Regitar</label>
+					<input type="text" id="nameInput28" placeholder="Signature of Regitar"  required>
+					</div>
+					<div class="tab">
+					<label>Remark</label>
+					<input type="text" id="nameInput29" placeholder="Remark"  required>
+					</div>	
+				<div style="overflow:auto;">
+					<div style="float:right;">
+					  <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+					  <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+					</div>
+				</div>
+				  <!-- Circles which indicates the steps of the form: -->
+				<div style="text-align:center;margin-top:40px;">
+					<span class="step"></span>
+					<span class="step"></span>
+					<span class="step"></span>
+					<span class="step"></span>
+					<span class="step"></span>
+					<span class="step"></span>
+					<span class="step"></span>
+				</div>
+				</form>
+				<button type="button" class="btn btn-primary" id="CheckBtn">Check with Previous Title</button>
+				<button type="button" class="btn btn-primary" id="cancalBtn">Cancel the Previous Deed</button>
+				<button type="button" class="btn btn-primary" id="setNameBtn">Create New Title</button><br>
+				<button type="button" class="btn btn-warning mt-2" id="open">Open Task</button>
+				<button type="button" class="btn btn-warning mt-2" id="rejectBtn">Reject the Request</button>
+			</div>
+			<div>
+				<div class="position-absolute top-0 end-0" style="padding-top: 10%;">
+					<dl>
+							<div class="row">
+								<div class="col">
+								<dd id="c1">Title ID</dd> 
+								<dd id="c2">B.F Title ID</dd> 			
+								<dd id="c3">Land Name</dd>
+								<dd id="c4">Plan No</dd>
+								<dd id="c5">Serveyor Name</dd>  				
+								<dd id="c6">Province</dd>
+								<dd id="c7">District</dd>
+								<dd id="c8">D.S Division</dd>					
+								<dd id="c9">G.N Division</dd>
+								<dd id="c10">Local Authority</dd>
+								<dd id="c11">Lot No</dd>
+								<dd id="c12">T.P No</dd>
+								<dd id="c13">Asst No</dd>
+								<dd id="c14">Village and Street</dd>
+								<dd id="c15">Pattu</dd> 
+								</div>
+								<div class="col" style="margin-left: 50px; margin-right: 50px;">
+								<dd id="c16">Korala</dd> 			
+								<dd id="c17">Boudaries North</dd>
+								<dd id="c18">Boudaries West</dd>
+								<dd id="c19">Boudaries south</dd>
+								<dd id="c20">Boudaries East</dd> 				
+								<dd id="c21">Date of Registry</dd>
+								<dd id="c22">Givers</dd>
+								<dd id="c23">Recipients<dd>
+								<dd id="c24">Nature</dd>
+								<dd id="c25">Deed No</dd>
+								<dd id="c26">Notary Name</dd>
+								<dd id="c27">Stamp Duty</dd>
+								<dd id="c28">Signature of Regitar</dd>
+								<dd id="c29">Remark</dd>
+								</div>
+							</div> 
+					</dl>
+				</div>
+	</div>
+</div>
+	<div id="second" style="display: none;">
+		<span class="close">&times;</span>
+		<table border="1" id="myTable">
+			<thead>
+			  <tr>
+				<th>Title ID</th>
+				<th>B.F Title ID</th>
+				<th>Land Name</th>
+				<th>Plan No</th>
+				<th>Serveyor Name</th>
+				<th>Province</th>
+				<th>District</th>
+				<th>Status</th>
+			  </tr>
+			</thead>
+			<tbody id="tbody">
+				<!-- Add your table rows here -->
+			</tbody>
+		</table>
+	</div>
+	</div>
+	<script>
+		// Get the popup and close button elements
+		//var popup = document.querySelector('.popup');
+		var closeBtn = document.querySelector('.close');
+		var open = document.getElementById("open");
+		var main = document.getElementById("main");
+		var second = document.getElementById("second");
+		// When the close button is clicked, hide the popup
+		closeBtn.addEventListener('click', function() {
+			second.style.display = 'none';
+			main.style.display = 'block';
+		});
+
+		// Open the popup window
+		open.addEventListener('click', function() {
+			main.style.display = 'none';
+			second.style.display = 'block';
+		});
+	</script>
+
+</div>
+    <script type="module">
+      // connect to the Ethereum network using Web3.js
+      const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+
+      // set the address of the deployed contract
+      const contractAddress = "0x25918F9F2c96d537572557C3B2311b739Cf65468";
+
+      // set the ABI of the contract
+      const contractABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_asstNo",
+				"type": "string"
+			}
+		],
+		"name": "setasstNo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_bfId",
+				"type": "string"
+			}
+		],
+		"name": "setbfId",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_cId",
+				"type": "string"
+			}
+		],
+		"name": "setcId",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_deedNo",
+				"type": "string"
+			}
+		],
+		"name": "setdeedNo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_district",
+				"type": "string"
+			}
+		],
+		"name": "setDistrict",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_dsDiv",
+				"type": "string"
+			}
+		],
+		"name": "setdsDiv",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_east",
+				"type": "string"
+			}
+		],
+		"name": "seteast",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_givers",
+				"type": "string"
+			}
+		],
+		"name": "setgivers",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_gnDiv",
+				"type": "string"
+			}
+		],
+		"name": "setGnDiv",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_korala",
+				"type": "string"
+			}
+		],
+		"name": "setkorala",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_lAuthority",
+				"type": "string"
+			}
+		],
+		"name": "setlAuthority",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_lName",
+				"type": "string"
+			}
+		],
+		"name": "setlName",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_lotNd",
+				"type": "string"
+			}
+		],
+		"name": "setlotNd",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_nature",
+				"type": "string"
+			}
+		],
+		"name": "setnature",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_north",
+				"type": "string"
+			}
+		],
+		"name": "setnorth",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_notary",
+				"type": "string"
+			}
+		],
+		"name": "setNotary",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_pattu",
+				"type": "string"
+			}
+		],
+		"name": "setpattu",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_pNo",
+				"type": "string"
+			}
+		],
+		"name": "setpNo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_province",
+				"type": "string"
+			}
+		],
+		"name": "setProvince",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_rDate",
+				"type": "string"
+			}
+		],
+		"name": "setrDate",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_recipirnts",
+				"type": "string"
+			}
+		],
+		"name": "setrecipirnts",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_registar",
+				"type": "string"
+			}
+		],
+		"name": "setRegistar",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_remark",
+				"type": "string"
+			}
+		],
+		"name": "setRemark",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_sName",
+				"type": "string"
+			}
+		],
+		"name": "setsName",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_south",
+				"type": "string"
+			}
+		],
+		"name": "setsouth",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_stamp",
+				"type": "string"
+			}
+		],
+		"name": "setStamp",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_tpNo",
+				"type": "string"
+			}
+		],
+		"name": "settpNo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_Village",
+				"type": "string"
+			}
+		],
+		"name": "setVillage",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_west",
+				"type": "string"
+			}
+		],
+		"name": "setwest",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllasstNo",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllbfId",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllcId",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlldeedNo",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllDistrict",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlldsDiv",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlleast",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllgivers",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllGnDiv",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllkorala",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlllAuthority",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlllName",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlllotNd",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllnature",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllnorth",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllNotary",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllpattu",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllpNo",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllProvince",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllrDate",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllrecipirnts",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllRegistar",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllRemark",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllsName",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllsouth",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllStamp",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlltpNo",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllVillage",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllwest",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getasstNo",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getbfId",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getcId",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getdeedNo",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getDistrict",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getdsDiv",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "geteast",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getgivers",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getGnDiv",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getkorala",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getlAuthority",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getlName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getlotNd",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getnature",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getnorth",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getNotary",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getpattu",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getpNo",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getProvince",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getrDate",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getrecipirnts",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getRegistar",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getRemark",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getsName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getsouth",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getStamp",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "gettpNo",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getVillage",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getwest",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+      // create a contract instance
+      const nameStoreContract = new web3.eth.Contract(contractABI, contractAddress);
+	  console.log("jj");
+      // get references to the HTML elements
+      const nameInput1 = document.getElementById("nameInput1");
+      const nameInput2 = document.getElementById("nameInput2");
+      const nameInput3 = document.getElementById("nameInput3");
+      const nameInput4 = document.getElementById("nameInput4");
+      const nameInput5 = document.getElementById("nameInput5");
+      const nameInput6 = document.getElementById("nameInput6");
+      const nameInput7 = document.getElementById("nameInput7");
+      const nameInput8 = document.getElementById("nameInput8");
+      const nameInput9 = document.getElementById("nameInput9");
+      const nameInput10 = document.getElementById("nameInput10");
+      const nameInput11 = document.getElementById("nameInput11");
+      const nameInput12 = document.getElementById("nameInput12");
+      const nameInput13 = document.getElementById("nameInput13");
+      const nameInput14 = document.getElementById("nameInput14");
+      const nameInput15 = document.getElementById("nameInput15");
+      const nameInput16 = document.getElementById("nameInput16");
+      const nameInput17 = document.getElementById("nameInput17");
+      const nameInput18 = document.getElementById("nameInput18");
+      const nameInput19 = document.getElementById("nameInput19");
+      const nameInput20 = document.getElementById("nameInput20");
+      const nameInput21 = document.getElementById("nameInput21");
+      const nameInput22 = document.getElementById("nameInput22");
+      const nameInput23 = document.getElementById("nameInput23");
+      const nameInput24 = document.getElementById("nameInput24");
+      const nameInput25 = document.getElementById("nameInput25");
+      const nameInput26 = document.getElementById("nameInput26");
+      const nameInput27 = document.getElementById("nameInput27");
+      const nameInput28 = document.getElementById("nameInput28");
+      const nameInput29 = document.getElementById("nameInput29");
+      const setNameBtn = document.getElementById("setNameBtn");
+	  const CheckBtn = document.getElementById("CheckBtn");	
+	  var givertel;	
+	  var preDeed;
+	  var user_id = '25120';
+      var api_key = 'WjXJFEWlenIbrtBGvn3S';
+      var sender_id = 'NotifyDEMO';
+      // add event listener to the "Set Name" button
+      setNameBtn.addEventListener("click", async () => {
+		let confirmed = confirm("Are you sure you want to create new title?");
+if (confirmed){
+        try {
+          // get the name from the input field
+          const val1 = nameInput1.value.trim();
+          const val2 = nameInput2.value.trim();
+          const val3 = nameInput3.value.trim();
+          const val4 = nameInput4.value.trim();
+          const val5 = nameInput5.value.trim();
+          const val6 = nameInput6.value.trim();
+          const val7 = nameInput7.value.trim();
+          const val8 = nameInput8.value.trim();
+          const val9 = nameInput9.value.trim();
+          const val10 = nameInput10.value.trim();
+          const val11 = nameInput11.value.trim();
+          const val12 = nameInput12.value.trim();
+          const val13 = nameInput13.value.trim();
+          const val14 = nameInput14.value.trim();
+          const val15 = nameInput15.value.trim();
+          const val16 = nameInput16.value.trim();
+          const val17 = nameInput17.value.trim();
+          const val18 = nameInput18.value.trim();
+          const val19 = nameInput19.value.trim();
+          const val20 = nameInput20.value.trim();
+          const val21 = nameInput21.value.trim();
+          const val22 = nameInput22.value.trim();
+          const val23 = nameInput23.value.trim();
+          const val24 = nameInput24.value.trim();
+          const val25 = nameInput25.value.trim();
+          const val26 = nameInput26.value.trim();
+          const val27 = nameInput27.value.trim();
+          const val28 = nameInput28.value.trim();
+          const val29 = nameInput29.value.trim();
+
+          // make sure the name is not empty
+          if (val1.length === 0) {
+            throw new Error("Please enter a name.");
+          }
+
+          // call the setName function
+          
+          const result1 = await nameStoreContract.methods.setcId(val1).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result2 = await nameStoreContract.methods.setbfId(val2).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result3 = await nameStoreContract.methods.setlName(val3).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result4 = await nameStoreContract.methods.setpNo(val4).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result5 = await nameStoreContract.methods.setsName(val5).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result6 = await nameStoreContract.methods.setProvince(val6).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result7 = await nameStoreContract.methods.setDistrict(val7).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result8 = await nameStoreContract.methods.setdsDiv(val8).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result9 = await nameStoreContract.methods.setGnDiv(val9).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result10 = await nameStoreContract.methods.setlAuthority(val10).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result11 = await nameStoreContract.methods.setlotNd(val11).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result12 = await nameStoreContract.methods.settpNo(val12).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result13 = await nameStoreContract.methods.setasstNo(val13).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result14 = await nameStoreContract.methods.setVillage(val14).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result15 = await nameStoreContract.methods.setpattu(val15).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result16 = await nameStoreContract.methods.setkorala(val16).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result17 = await nameStoreContract.methods.setnorth(val17).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result18 = await nameStoreContract.methods.setwest(val18).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result19 = await nameStoreContract.methods.setsouth(val19).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result20 = await nameStoreContract.methods.seteast(val20).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result21 = await nameStoreContract.methods.setrDate(val21).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result22 = await nameStoreContract.methods.setgivers(val22).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result23 = await nameStoreContract.methods.setrecipirnts(val23).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result24 = await nameStoreContract.methods.setnature(val24).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result25 = await nameStoreContract.methods.setdeedNo(val25).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result26 = await nameStoreContract.methods.setNotary(val26).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result27 = await nameStoreContract.methods.setStamp(val27).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result28 = await nameStoreContract.methods.setRegistar(val28).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+          const result29 = await nameStoreContract.methods.setRemark(val29).send({ from: "0x5Fe89054ce3e7fEcAC56D3e3f13A5345E155b563" });
+		  const phone = val12;
+		  let timestamp = new Date().toLocaleDateString();
+          const message = ("Land Registration Department., \n Dear Customer, Your Land owership Aproved more informations., \n Deed id: "
+		  +val25+" Aproved Date: "+timestamp);
+		  console.log("Recipient"+phone);
+		  let index=document.getElementById("nameInput1").value;
+				update(ref(database, 'TitleData/' + index), {
+                    Status: ("Approved on : "+ timestamp),
+					
+                })
+				DisplayUser();
+//..................................................................................
+
+fetch(`https://app.notify.lk/api/v1/send?user_id=${user_id}&api_key=${api_key}&sender_id=${sender_id}&to=${phone}&message=${message}`, {
+						method: 'POST'
+					})
+						.then(response => {
+						alert('SMS sent to customer successfully.');
+						})
+						.catch(error => {
+						console.error('Error sending SMS:', error);
+						});
+
+//..................................................................................
+          // clear the input field
+          
+
+          // display a success message
+          alert("Added successfully!");
+        } catch (error) {
+          // display an error message
+          alert("Complete the all fields");
+        }}
+      });
+	  CheckBtn.addEventListener("click", () => {
+				let index=document.getElementById("nameInput2").value;
+				console.log("clicked element");
+				getbfId(index);
+
+		});
+		async function getbfId(index){
+			
+			const name1 = await nameStoreContract.methods.getcId(index).call();
+			const name2 = await nameStoreContract.methods.getbfId(index).call();
+			const name3 = await nameStoreContract.methods.getlName(index).call();
+			const name4 = await nameStoreContract.methods.getpNo(index).call();
+			const name5 = await nameStoreContract.methods.getsName(index).call();
+			const name6 = await nameStoreContract.methods.getProvince(index).call();
+			const name7 = await nameStoreContract.methods.getDistrict(index).call();
+			const name8 = await nameStoreContract.methods.getdsDiv(index).call();
+			const name9 = await nameStoreContract.methods.getGnDiv(index).call();
+			const name10 = await nameStoreContract.methods.getlAuthority(index).call();
+			const name11 = await nameStoreContract.methods.getlotNd(index).call();
+			const name12 = await nameStoreContract.methods.gettpNo(index).call();
+			const name13 = await nameStoreContract.methods.getasstNo(index).call();
+			const name14 = await nameStoreContract.methods.getVillage(index).call();
+			const name15 = await nameStoreContract.methods.getpattu(index).call();
+			const name16 = await nameStoreContract.methods.getkorala(index).call();
+			const name17 = await nameStoreContract.methods.getnorth(index).call();
+			const name18 = await nameStoreContract.methods.getwest(index).call();
+			const name19 = await nameStoreContract.methods.getsouth(index).call();
+			const name20 = await nameStoreContract.methods.geteast(index).call();
+			const name21 = await nameStoreContract.methods.getrDate(index).call();
+			const name22 = await nameStoreContract.methods.getgivers(index).call();
+			const name23 = await nameStoreContract.methods.getrecipirnts(index).call();
+			const name24 = await nameStoreContract.methods.getnature(index).call();
+			const name25 = await nameStoreContract.methods.getdeedNo(index).call();
+			const name26 = await nameStoreContract.methods.getNotary(index).call();
+			const name27 = await nameStoreContract.methods.getStamp(index).call();
+			const name28 = await nameStoreContract.methods.getRegistar(index).call();
+			const name29 = await nameStoreContract.methods.getRemark(index).call();
+			document.getElementById("c1").innerHTML=("Title ID: "+name1);
+			document.getElementById("c2").innerHTML=("B.F Title ID: "+name2);
+			document.getElementById("c3").innerHTML=("Land Name: "+name3);
+			document.getElementById("c4").innerHTML=("Plan No: "+name4);
+			document.getElementById("c5").innerHTML=("Serveyor Name: "+name5);
+			document.getElementById("c6").innerHTML=("Province: "+name6);
+			document.getElementById("c7").innerHTML=("District: "+name7);
+			document.getElementById("c8").innerHTML=("D.S Division: "+name8);
+			document.getElementById("c9").innerHTML=("G.N Division: "+name9);
+			document.getElementById("c10").innerHTML=("Local Authority: "+name10);
+			document.getElementById("c11").innerHTML=("Lot No: "+name11);
+			document.getElementById("c12").innerHTML=("T.P No: "+name12);
+			document.getElementById("c13").innerHTML=("Asst No: "+name13);
+			document.getElementById("c14").innerHTML=("Village and Street: "+name14);
+			document.getElementById("c15").innerHTML=("Pattu: "+name15);
+			document.getElementById("c16").innerHTML=("Korala: "+name16);
+			document.getElementById("c17").innerHTML=("Boudaries North: "+name17);
+			document.getElementById("c18").innerHTML=("Boudaries West: "+name18);
+			document.getElementById("c19").innerHTML=("Boudaries South: "+name19);
+			document.getElementById("c20").innerHTML=("Boudaries East: "+name20);
+			document.getElementById("c21").innerHTML=("Date of Registry: "+name21);
+			document.getElementById("c22").innerHTML=("Givers: "+name22);
+			document.getElementById("c23").innerHTML=("Recipients: "+name23);
+			document.getElementById("c24").innerHTML=("Nature: "+name24);
+			document.getElementById("c25").innerHTML=("Deed No: "+name25);
+			document.getElementById("c26").innerHTML=("Notary Name: "+name26);
+			document.getElementById("c27").innerHTML=("Stamp Duty: "+name27);
+			document.getElementById("c28").innerHTML=("Signature of Regitar: "+name28);
+			document.getElementById("c29").innerHTML=("Remark: "+name29);
+			givertel = name12;
+			preDeed = name1;
+			console.log("magesudu"+ givertel);
+		}
+
+		// Call the function with an index argument
+
+		//.......................................................................................................
+	
+	
+	    // Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+    import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+    import {getDatabase, set, ref, child, update, get,
+            query, orderByChild, equalTo} from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        // Your configs
+		apiKey: "AIzaSyCe_bkIeOc4zaiT1eOcKqySmv_CSfSwl7o",
+		authDomain: "landregistration-6612a.firebaseapp.com",
+		projectId: "landregistration-6612a",
+		storageBucket: "landregistration-6612a.appspot.com",
+		messagingSenderId: "113288186241",
+		appId: "1:113288186241:web:4c9d1b4fdf0f0418c10080"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const database = getDatabase(app);
+    
+	
+	function DisplayUser(){
+      const tasksRef = query(ref(database, "TitleData"), orderByChild("Status"), equalTo("Pending") );
+                console.log("ade");
+                get(tasksRef)
+                  .then((snapshot) => {
+                    var sti =[];
+                    snapshot.forEach(childSnapshot =>{
+                      sti.push(childSnapshot.val());
+                    });    
+                      //const data = snapshot.val();
+                      console.log("addeee"+sti);
+                    AddAllUser(sti);
+                  })
+                  .catch((err) => {
+                    console.error(err);
+                });
+
+    }
+
+    function AddAllUser(sti){
+      
+      sti.forEach(element =>{
+      UserDetails(element.AllcId,element.AllbfId,element.AlllName,element.AllpNo,element.AllsName,element.Allprovince,element.Alldistrict,element.Status)
+      });
+    }
+
+    function UserDetails(AllcId,AllbfId,AlllName,AllpNo,AllsName,Allprovince,Alldistrict,Status){
+
+        var tbody = document.getElementById("tbody");  
+        let trow = document.createElement("tr");
+        console.log("LLLLL",AllcId);
+        let td1 = document.createElement("td");
+        let td2 = document.createElement("td");
+        let td3 = document.createElement("td");
+        let td4 = document.createElement("td");
+        let td5 = document.createElement("td");
+        let td6 = document.createElement("td");
+        let td7 = document.createElement("td");
+        let td30 = document.createElement("td");
+        
+    
+
+       
+        td1.innerHTML = AllcId;
+        td2.innerHTML = AllbfId;
+        td3.innerHTML = AlllName;
+        td4.innerHTML = AllpNo;
+        td5.innerHTML = AllsName;
+        td6.innerHTML = Allprovince;
+        td7.innerHTML = Alldistrict;
+        td30.innerHTML = Status;
+
+
+        trow.appendChild(td1);
+        trow.appendChild(td2);
+        trow.appendChild(td3);
+        trow.appendChild(td4);
+        trow.appendChild(td5);
+        trow.appendChild(td6);
+        trow.appendChild(td7);
+        trow.appendChild(td30);
+      
+
+        tbody.appendChild(trow);
+
+   }
+    
+   DisplayUser();
+
+
+	function selectData(index){
+		console.log(index);
+		const db = getDatabase();
+		const dbref = ref(db);
+		get(child(dbref, "TitleData/" + index )).then((snapshot)=>{
+			if(snapshot.exists()){
+			
+				nameInput1.value = snapshot.val().AllcId;
+				nameInput2.value = snapshot.val().AllbfId;
+				nameInput3.value = snapshot.val().AlllName;
+				nameInput4.value = snapshot.val().AllpNo;
+				nameInput5.value = snapshot.val().AllsName;
+				nameInput6.value = snapshot.val().Allprovince;
+				nameInput7.value = snapshot.val().Alldistrict;
+				nameInput8.value = snapshot.val().AlldsDiv;
+				nameInput9.value = snapshot.val().AllgnDiv;
+				nameInput10.value = snapshot.val().AlllAuthority;
+				nameInput11.value = snapshot.val().AlllotNd;
+				nameInput12.value = snapshot.val().AlltpNo;
+				nameInput13.value = snapshot.val().AllasstNo;
+				nameInput14.value = snapshot.val().AllVillage;
+				nameInput15.value = snapshot.val().Allpattu;
+				nameInput16.value = snapshot.val().Allkorala;
+				nameInput17.value = snapshot.val().Allnorth;
+				nameInput18.value = snapshot.val().Allwest;
+				nameInput19.value = snapshot.val().Allsouth;
+				nameInput20.value = snapshot.val().Alleast;
+				nameInput21.value = snapshot.val().AllrDate;
+				nameInput22.value = snapshot.val().Allgivers;
+				nameInput23.value = snapshot.val().Allrecipirnts;
+				nameInput24.value = snapshot.val().Allnature;
+				nameInput25.value = snapshot.val().AlldeedNo;
+				nameInput26.value = snapshot.val().Allnotary;
+				nameInput27.value = snapshot.val().Allstamp;
+				nameInput28.value = snapshot.val().Allregistar;
+				nameInput29.value = snapshot.val().Allremark;
+
+				nameInput7.value = snapshot.val().Alldistrict;
+			
+
+			}
+			else{
+				alert("hi");
+			}
+			
+		})
+		.catch((error)=>{
+			alert("abcdef",error);
+		
+		});
+	}
+
+
+// Get the reference to the table
+var table = document.getElementById("myTable");
+
+
+// Keep track of the previously selected row
+var previousRow = null;
+
+// Attach an event listener to the table
+table.addEventListener("click", function(event) {
+
+  // Get the reference to the clicked row
+  var row = event.target.parentNode;
+
+  // Get the value of the first cell in the row
+  var firstCellValue = row.cells[0].textContent;
+
+  // Assign the first cell value to a variable
+  var selectedCellValue = firstCellValue;
+
+  // Update the <h1> tag with the first cell value
+  var h1 = document.createElement("h1");
+  var text = document.createTextNode(firstCellValue);
+  h1.appendChild(text);
+  selectData(selectedCellValue);
+  document.body.appendChild(h1);
+
+  // Remove the background color of the previously selected row
+  if (previousRow) {
+    previousRow.style.backgroundColor = "";
+  }
+
+  // Change the background color of the selected row
+  row.style.backgroundColor = "yellow";
+
+  // Set the current row as the previously selected row
+  previousRow = row;
+
+  // Print the selected cell value to the console
+  console.log(selectedCellValue);
+
+});
+
+
+var cancalBtn = document.getElementById("cancalBtn");
+  cancalBtn.addEventListener("click", async () => {
+	let timestamp = new Date().toLocaleDateString()
+	let index=document.getElementById("nameInput2").value;
+	let confirmed = confirm("Are you sure you want to cancal the Deed ?");
+
+	const phone = givertel;
+    const message = ("Land Registration Department., \n Dear Customer, Your Land owership cancaled more informations., \n Deed id: "+preDeed+" Cancaled Date: "+timestamp);
+
+if(confirmed){
+
+				update(ref(database, 'TitleData/' + index), {
+                    Status: ("canceled on : "+ timestamp),
+					
+                })
+				fetch(`https://app.notify.lk/api/v1/send?user_id=${user_id}&api_key=${api_key}&sender_id=${sender_id}&to=${phone}&message=${message}`, {
+						method: 'POST'
+					})
+						.then(response => {
+						alert('SMS sent to customer successfully.');
+						console.log("magesudu"+ givertel);
+						})
+						.catch(error => {
+						console.error('Error sending SMS:', error);
+						});
+								alert("deed cancaled");
+								DisplayUser();
+							}
+				})
+var rejectBtn = document.getElementById("rejectBtn");
+rejectBtn.addEventListener("click", async () => {
+    let remark = document.getElementById("nameInput29").value;
+    let index=document.getElementById("nameInput1").value;
+    let confirmed = confirm("Are you sure you want to reject this deed request?");
+    if (confirmed) {
+        let timestamp = new Date().toLocaleDateString()
+        update(ref(database, 'TitleData/' + index), {
+            Allremark: remark,
+            Status: ("Rejected On : "+ timestamp),
+        })
+        alert("Complete the all fields");
+        DisplayUser();
+    }
+})
+
+    </script>
+  </body>
+</html>
+<script>
+	var currentTab = 0; // Current tab is set to be the first tab (0)
+	var totalTabs = 7;  // Current tab is set to be the first tab (0)
+	showTab(currentTab); // Display the current tab
+	
+	function showTab(n) {
+	  // This function will display the specified tab of the form...
+	  var x = document.getElementsByClassName("tab");
+	  x[n].style.display = "block";
+	  //... and fix the Previous/Next buttons:
+	  if (n == 0) {
+		document.getElementById("prevBtn").style.display = "none";
+	  } else {
+		document.getElementById("prevBtn").style.display = "inline";
+	  }
+	  if (n == (totalTabs - 1)) {
+		document.getElementById("nextBtn").innerHTML = "Submit";
+	  } else {
+		document.getElementById("nextBtn").innerHTML = "Next";
+	  }
+	  //... and run a function that will display the correct step indicator:
+	  fixStepIndicator(n)
+	}
+	
+	function nextPrev(n) {
+	  // This function will figure out which tab to display
+	  var x = document.getElementsByClassName("tab");
+	  // Exit the function if any field in the current tab is invalid:
+	  if (n == 1 && !validateForm()) return false;
+	  // Hide the current tab:
+	  x[currentTab].style.display = "none";
+	  // Increase or decrease the current tab by 1:
+	  currentTab = currentTab + n;
+	  // if you have reached the end of the form...
+	  if (currentTab >= x.length) {
+		// ... the form gets submitted:
+		document.getElementById("regForm").submit();
+		return false;
+	  }
+	  // Otherwise, display the correct tab:
+	  showTab(currentTab);
+	}
+	
+	function validateForm() {
+	  // This function deals with validation of the form fields
+	  var x, y, i, valid = true;
+	  x = document.getElementsByClassName("tab");
+	  y = x[currentTab].getElementsByTagName("input");
+	  // A loop that checks every input field in the current tab:
+	  for (i = 0; i < y.length; i++) {
+		// If a field is empty...
+		if (y[i].value == "") {
+		  // add an "invalid" class to the field:
+		  y[i].className += " invalid";
+		  // and set the current valid status to false
+		  valid = false;
+		}
+	  }
+	  // If the valid status is true, mark the step as finished and valid:
+	  if (valid) {
+		document.getElementsByClassName("step")[currentTab].className += " finish";
+	  }
+	  return valid; // return the valid status
+	}
+	
+	function fixStepIndicator(n) {
+	  // This function removes the "active" class of all steps...
+	  var i, x = document.getElementsByClassName("step");
+	  for (i = 0; i < x.length; i++) {
+		x[i].className = x[i].className.replace(" active", "");
+	  }
+	  //... and adds the "active" class on the current step:
+	  x[n].className += " active";
+	}
+
+	</script>

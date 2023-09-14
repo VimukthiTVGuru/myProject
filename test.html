@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        body {
+          background-image: linear-gradient(
+            to right,
+            #eeefef,
+    #d2d5d7,
+    #c3c5c4,
+    #b2b3b4,
+    #b6b8b8
+          );
+        }
+        
+        #regForm {
+          margin: 100px auto;
+          font-family: Raleway;
+          padding: 40px;
+          width: 50%;
+          min-width: 300px;
+
+        }
+        
+        h1 {
+          text-align: center;  
+        }
+        
+        input {
+          padding: 10px;
+          width: 100%;
+          font-size: 17px;
+          font-family: Raleway;
+          border: 1px solid #aaaaaa;
+        }
+        
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid {
+          background-color: #ffdddd;
+        }
+        
+        /* Hide all steps by default: */
+        .tab {
+          display: none;
+        }
+        
+        button {
+          background-color: rgb(187, 45, 59);
+          color: #ffffff;
+          border: none;
+          padding: 10px 20px;
+          font-size: 17px;
+          font-family: Raleway;
+          cursor: pointer;
+        }
+        
+        button:hover {
+          opacity: 0.8;
+        }
+        
+        #prevBtn {
+          background-color: #bbbbbb;
+        }
+        
+        /* Make circles that indicate the steps of the form: */
+        .step {
+          height: 15px;
+          width: 15px;
+          margin: 0 2px;
+          background-color: #bbbbbb;
+          border: none;  
+          border-radius: 50%;
+          display: inline-block;
+          opacity: 0.5;
+        }
+        
+        .step.active {
+          opacity: 1;
+        }
+        
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+          background-color: #04AA6D;
+        }
+        #abcd{
+            left: 0%;
+        }
+        h2 {
+          color: #fefcfc;
+        }
+        </style>
+        <body>
+            <div class="container" id="abcd">
+            <h2 class="text-center">Submit Title Data for Aprovels</h2>
+            <form  id="regForm" action="/test.html">
+                    <p>Please fill in this form to create an account.</p>
+                    <div class="tab">
+                    <label for="text" class="form-label">Title ID</label>
+                    <input type="text" placeholder="Title ID" name="Title" id="Title" required>
+                    <label class="form-label">B.F Title ID</label>
+                    <input type="text" placeholder="B.F Title ID" name="BF" id="BF" required>
+                    <label class="form-label">Land Name</label>
+                    <input type="text" placeholder="Land Name" name="LandName" id="LandName" required>
+                    <label for="text" class="form-label">Plan No</label>
+                    <input type="text" placeholder="Plan No" name="PlanNo" id="PlanNo" required>
+                    </div>
+                    <div class="tab">
+                    <label class="form-label">Serveyor Name</label>
+                    <input type="text" placeholder="Serveyor" name="" id="Serveyor" required>
+                    <label class="form-label">Province</label>
+                    <input type="text" placeholder="Province" name="Province" id="Province" required>
+                    <label class="form-label">District</label>
+                    <select name="District" id="District">
+                        <option value="Colombo">Colombo</option>
+                        <option value="Gampaha">Gampaha</option>
+                        <option value="Kaluthara">Kaluthara</option>
+                        <option value="Galle">Galle</option>
+                        <option value="Matara">Matara</option>
+                        <option value="Hambantota">Hambantota</option>
+                        <option value="Kandy">Kandy</option>
+                        <option value="Matale">Matale</option>
+                        <option value="Nuwara Eliya">Nuwara Eliya</option>
+                        <option value="Jaffna">Jaffna</option>
+                        <option value="Kilinochchi">Kilinochchi</option>
+                        <option value="Mannar">Mannar</option>
+                        <option value="Mullaitivu">Mullaitivu</option>
+                        <option value="Vavuniya">Vavuniya</option>
+                        <option value="Badulla">Badulla</option>
+                        <option value="Monaragala">Monaragala</option>
+                        <option value="Kurunegala">Kurunegala</option>
+                        <option value="Puttalam">Puttalam</option>
+                        <option value="Anuradhapura">Anuradhapura</option>
+                        <option value="Polonnaruwa">Polonnaruwa</option>
+                        <option value="Kegalle">Kegalle</option>
+                        <option value="Rathnapura">Rathnapura</option>
+                        <option value="Ampara">Ampara</option>
+                        <option value="Batticaloa">Batticaloa</option>
+                        <option value="Trincomalee">Trincomalee</option>
+                    </select>
+                    <label class="form-label">D.S Division</label>
+                    <input type="text" placeholder="D.S Division" name="DS" id="DS" required>
+                    <label class="form-label">G.N Division</label>
+                    <input type="text" placeholder="G.N Division" name="GN" id="GN" required>
+                    </div>
+                    <div class="tab">
+                    <label for="text" class="form-label">Local Authority</label>
+                    <input type="text" placeholder="Local Authority" name="Authority" id="Authority" required>
+                    <label class="form-label">Lot No</label>
+                    <input type="text" placeholder="Lot No" name="Lot" id="Lot" required>
+                    <label for="text" class="form-label">Asst No</label>
+                    <input type="text" placeholder="Asst No" name="Asst" id="Asst" required>
+                    </div>
+                    <div class="tab">
+                    <label class="form-label">Village and Street</label>
+                    <input type="text" placeholder="Village and Street" name="Village" id="Village" required>
+                    <label class="form-label">Pattu</label>
+                    <input type="text" placeholder="Pattu" name="Pattu" id="Pattu" required>
+                    <label for="text" class="form-label">Korala</label>
+                    <input type="text" placeholder="Korala" name="Korala" id="Korala" required>
+                    </div>
+                    <div class="tab">
+                    <label class="form-label">Boudaries North</label>
+                    <input type="text" placeholder="Boudaries North" name="North" id="North" required>
+                    <label class="form-label">Boudaries West</label>
+                    <input type="text" placeholder="Boudaries West" name="West" id="West" required>
+                    <label class="form-label">Boudaries South</label>
+                    <input type="text" placeholder="Boudaries South" name="South" id="South" required>
+                    <label class="form-label">Boudaries East</label>
+                    <input type="text" placeholder="Boudaries East" name="East" id="East" required>
+                    </div>
+                    <div class="tab">
+                    <label class="form-label">Date of Registry</label>
+                    <input type="text" placeholder="Date of Registry" name="DateoR" id="DateoR" required>
+                    <label class="form-label">Givers</label>
+                    <input type="text" placeholder="Givers" name="Givers" id="Givers" required>
+                    <label class="form-label">Recipients</label>
+                    <input type="text" placeholder="Recipients" name="Recipients" id="Recipients" required>
+                    <label class="form-label">T.P No</label>
+                    <input type="text" placeholder="T.P No" name="TP" id="TP" required>
+                    </div>
+                    <div class="tab">
+                    <label class="form-label">Nature</label>
+                    <input type="text" placeholder="Nature and Particulars of Alienations and Income Ranges" name="Nature" id="Nature" required>
+                    <label class="form-label">Deed No</label>
+                    <input type="text" placeholder="Deed No" name="Deed" id="Deed" required>
+                    <label class="form-label">Notary Name</labSouthel>
+                    <input type="text" placeholder="Notary Name" name="Notary" id="Notary" required>
+                    <label class="form-label">Stamp Duty</label>
+                    <input type="text" placeholder="Stamp Duty" name="Stamp" id="Stamp" required>    
+                    <label class="form-label">Signature of Regitar</label>
+                    <input type="text" placeholder="Signature of Regitar" name="Signature" id="Signature" required></label>
+                    </div>
+                    <div class="tab">
+                    <label class="form-label">Remark</label>
+                    <input type="text" placeholder="Remark" name="Remark" id="Remark" required>
+                    </div>
+                    <div style="overflow:auto;">
+                        <div style="float:right;"><br>
+                          <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                          <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                        </div>
+                    </div>
+                      <!-- Circles which indicates the steps of the form: -->
+                    <div style="text-align:center;margin-top:40px;">
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+                    </div>
+
+                    <button type="button" id="submitData" name="submitData">Submit</button>
+             
+            
+            </form>
+        </div>
+        <script>
+        var currentTab = 0; // Current tab is set to be the first tab (0)
+        var totalTabs = 7;  // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
+        
+        function showTab(n) {
+          // This function will display the specified tab of the form...
+          var x = document.getElementsByClassName("tab");
+          x[n].style.display = "block";
+          //... and fix the Previous/Next buttons:
+          if (n == 0) {
+            document.getElementById("prevBtn").style.display = "none";
+          } else {
+            document.getElementById("prevBtn").style.display = "inline";
+          }
+          if (n == (totalTabs - 1)) {
+            document.getElementById("nextBtn").innerHTML = "Submit";
+          } else {
+            document.getElementById("nextBtn").innerHTML = "Next";
+          }
+          //... and run a function that will display the correct step indicator:
+          fixStepIndicator(n)
+        }
+        
+        function nextPrev(n) {
+          // This function will figure out which tab to display
+          var x = document.getElementsByClassName("tab");
+          // Exit the function if any field in the current tab is invalid:
+          if (n == 1 && !validateForm()) return false;
+          // Hide the current tab:
+          x[currentTab].style.display = "none";
+          // Increase or decrease the current tab by 1:
+          currentTab = currentTab + n;
+          // if you have reached the end of the form...
+          if (currentTab >= x.length) {
+            // ... the form gets submitted:
+            document.getElementById("regForm").submit();
+            return false;
+          }
+          // Otherwise, display the correct tab:
+          showTab(currentTab);
+        }
+        
+        function validateForm() {
+          // This function deals with validation of the form fields
+          var x, y, i, valid = true;
+          x = document.getElementsByClassName("tab");
+          y = x[currentTab].getElementsByTagName("input");
+          // A loop that checks every input field in the current tab:
+          for (i = 0; i < y.length; i++) {
+            // If a field is empty...
+            if (y[i].value == "") {
+              // add an "invalid" class to the field:
+              y[i].className += " invalid";
+              // and set the current valid status to false
+              valid = false;
+            }
+          }
+          // If the valid status is true, mark the step as finished and valid:
+          if (valid) {
+            document.getElementsByClassName("step")[currentTab].className += " finish";
+          }
+          return valid; // return the valid status
+        }
+        
+        function fixStepIndicator(n) {
+          // This function removes the "active" class of all steps...
+          var i, x = document.getElementsByClassName("step");
+          for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+          }
+          //... and adds the "active" class on the current step:
+          x[n].className += " active";
+        }
+
+        </script>
+
+
+        
+</body>
+</html>
+
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+  import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut
+  } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+  import {getDatabase, set, ref, child, update, get,
+          query, orderByChild, equalTo} from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+
+
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+      // Your configs
+      apiKey: "AIzaSyCe_bkIeOc4zaiT1eOcKqySmv_CSfSwl7o",
+      authDomain: "landregistration-6612a.firebaseapp.com",
+      projectId: "landregistration-6612a",
+      storageBucket: "landregistration-6612a.appspot.com",
+      messagingSenderId: "113288186241",
+      appId: "1:113288186241:web:4c9d1b4fdf0f0418c10080"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
+  const database = getDatabase(app);
+  
+  submitData.addEventListener('click', (e) => {
+    const nameInput1 = document.getElementById("Title").value;
+    const nameInput2 = document.getElementById("BF").value;
+    const nameInput3 = document.getElementById("LandName").value;
+    const nameInput4 = document.getElementById("PlanNo").value;
+    const nameInput5 = document.getElementById("Serveyor").value;
+    const nameInput6 = document.getElementById("Province").value;
+    const nameInput7 = document.getElementById("District").value;
+    const nameInput8 = document.getElementById("DS").value;
+    const nameInput9 = document.getElementById("GN").value;
+    const nameInput10 = document.getElementById("Authority").value;
+    const nameInput11 = document.getElementById("Lot").value;
+    const nameInput12 = document.getElementById("TP").value;
+    const nameInput13 = document.getElementById("Asst").value;
+    const nameInput14 = document.getElementById("Village").value;
+    const nameInput15 = document.getElementById("Pattu").value;
+    const nameInput16 = document.getElementById("Korala").value;
+    const nameInput17 = document.getElementById("North").value;
+    const nameInput18 = document.getElementById("West").value;
+    const nameInput19 = document.getElementById("South").value;
+    const nameInput20 = document.getElementById("East").value;
+    const nameInput21 = document.getElementById("DateoR").value;
+    const nameInput22 = document.getElementById("Givers").value;
+    const nameInput23 = document.getElementById("Recipients").value;
+    const nameInput24 = document.getElementById("Nature").value;
+    const nameInput25 = document.getElementById("Deed").value;
+    const nameInput26 = document.getElementById("Notary").value;
+    const nameInput27 = document.getElementById("Stamp").value;
+    const nameInput28 = document.getElementById("Signature").value;
+    const nameInput29 = document.getElementById("Remark").value;
+
+    
+
+    set(ref(database, 'TitleData/'+ nameInput1 ), {
+      AllcId: nameInput1,
+      AllbfId: nameInput2,
+      AlllName: nameInput3,
+      AllpNo: nameInput4,
+      AllsName: nameInput5,
+      Allprovince: nameInput6,
+      Alldistrict: nameInput7,
+      AlldsDiv: nameInput8,
+      AllgnDiv: nameInput9,
+      AlllAuthority: nameInput10,
+      AlllotNd: nameInput11,
+      AlltpNo: nameInput12,
+      AllasstNo: nameInput13,
+      AllVillage: nameInput14,
+      Allpattu: nameInput15,
+      Allkorala: nameInput16,
+      Allnorth: nameInput17,
+      Allwest: nameInput18,
+      Allsouth: nameInput19,
+      Alleast: nameInput20,
+      AllrDate: nameInput21,
+      Allgivers: nameInput22,
+      Allrecipirnts: nameInput23,
+      Allnature: nameInput24,
+      AlldeedNo: nameInput25,
+      Allnotary: nameInput26,
+      Allstamp: nameInput27,
+      Allregistar: nameInput28,
+      Allremark: nameInput29,
+      Status: "Pending"
+          
+    })
+    .then(()=>{
+      alert('Request Created');
+    })
+    .catch((error)=>{
+        alert("Complete the all fields");
+    })
+    
+  });      
+
+
+</script>

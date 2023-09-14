@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.4.0/dist/web3.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        body {
+        background-image: linear-gradient(
+            to right,
+            #eeefef,
+    #d2d5d7,
+    #c3c5c4,
+    #b2b3b4,
+    #b6b8b8
+        );
+        }
+        #nameInput{
+            width: 250px;
+        }
+        h2 {
+          color: #fcfbfb;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="text-center">Deed Status</h2>
+
+    <input id="nameInput" placeholder="Search..." class="form-control mr-sm-2" type="search" aria-label="Search"
+     style="  margin-left: 10px;">
+    <button id="CheckBtn" class="btn btn-danger" style="  margin-left: 10px; margin-top: 5px;">search</button>
+    <button id="ab" class="btn btn-danger"style="  margin-left: 10px; margin-top: 5px;">print</button>
+  
+        <style>
+            /* Styling for the title certificate */
+            #certificate {
+                border: 1px solid #000;
+                padding: 20px;
+                width: 600px;
+                margin: 0 auto;
+                font-family: Arial, sans-serif;
+            }
+            
+            h1 {
+                font-size: 24px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            
+            .logo {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            
+            img {
+                width: 150px;
+                height: auto;
+            }
+            
+            dl {
+                margin-bottom: 20px;
+            }
+            
+            dt {
+                font-size: x-large;
+            }
+            
+            dd {
+                margin-left: 30px;
+                margin-bottom: 5px;
+            }
+            
+            
+            #current-date {
+                text-align: right;
+                font-size: 12px;
+            }
+        </style>
+        <div style="margin-left: 100px; margin-top: 50px;" id="pooji">
+        <div id="certificate">
+            <div class="logo">
+                <img src="images.png" alt="Logo">
+            </div>
+            <h4>Title Certificate / පත් ඉරුව / தலைப்புச் சான்றிதழ்</h4><br>
+            <dl><div class="row">
+                <dd id="c1" class="col">Title ID</dd>
+                <dd id="c2" class="col">B.F Title ID</dd>
+                </div>
+                <div class="row">
+                <dd id="c3" class="col">Land Name</dd>
+                <dd id="c4" class="col">Plan No</dd>
+                </div><hr>
+                <dd id="c5">Surveyor Name</dd><hr>
+                <div class="row">
+                <dd id="c6" class="col">Province</dd>
+                <dd id="c7" class="col">District</dd>
+                </div>
+                <div class="row">
+                <dd id="c8" class="col">D.S Division</dd>
+                <dd id="c9" class="col">G.N Division</dd>
+                </div><hr>
+                <div class="row">
+                <dd id="c10" class="col">Local Authority</dd>
+                <dd id="c11" class="col">Lot No</dd>
+                </div>
+                <div class="row">
+                <dd id="c12" class="col">T.P No</dd>
+                <dd id="c13" class="col">Asst No</dd>
+                </div><hr>
+                <dd id="c14">Village and Street</dd>
+                <div class="row"><hr>
+                <dd id="c15" class="col">Pattu</dd>
+                <dd id="c16" class="col">Korala</dd>
+                </div>
+                <div class="row"><hr>
+                <dd id="c17" class="col">Boundaries North</dd>
+                <dd id="c18" class="col">Boundaries West</dd>
+                </div>
+                <div class="row">
+                <dd id="c19" class="col">Boundaries South</dd>
+                <dd id="c20" class="col">Boundaries East</dd>
+                </div><hr>
+                <dd id="c21">Date of Registry</dd>
+                <dd id="c22">Givers</dd>
+                <dd id="c23">Recipients</dd>
+                <dd id="c24">Nature</dd>
+                <dd id="c25">Deed No</dd>
+                <dd id="c26">Notary Name</dd>
+                <dd id="c27">Stamp Duty</dd>
+                <dd id="c28">Signature of Registrar</dd>
+                <dd id="c29">Remarks</dd>
+            </dl>
+
+        </div>
+    </div>
+</body>
+</html>
+<script>
+var a = document.getElementById("ab");
+
+const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+
+// set the address of the deployed contract
+const contractAddress = "0x25918F9F2c96d537572557C3B2311b739Cf65468";
+
+// set the ABI of the contract
+const contractABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_asstNo",
+				"type": "string"
+			}
+		],
+		"name": "setasstNo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_bfId",
+				"type": "string"
+			}
+		],
+		"name": "setbfId",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_cId",
+				"type": "string"
+			}
+		],
+		"name": "setcId",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_deedNo",
+				"type": "string"
+			}
+		],
+		"name": "setdeedNo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_district",
+				"type": "string"
+			}
+		],
+		"name": "setDistrict",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_dsDiv",
+				"type": "string"
+			}
+		],
+		"name": "setdsDiv",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_east",
+				"type": "string"
+			}
+		],
+		"name": "seteast",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_givers",
+				"type": "string"
+			}
+		],
+		"name": "setgivers",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_gnDiv",
+				"type": "string"
+			}
+		],
+		"name": "setGnDiv",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_korala",
+				"type": "string"
+			}
+		],
+		"name": "setkorala",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_lAuthority",
+				"type": "string"
+			}
+		],
+		"name": "setlAuthority",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_lName",
+				"type": "string"
+			}
+		],
+		"name": "setlName",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_lotNd",
+				"type": "string"
+			}
+		],
+		"name": "setlotNd",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_nature",
+				"type": "string"
+			}
+		],
+		"name": "setnature",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_north",
+				"type": "string"
+			}
+		],
+		"name": "setnorth",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_notary",
+				"type": "string"
+			}
+		],
+		"name": "setNotary",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_pattu",
+				"type": "string"
+			}
+		],
+		"name": "setpattu",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_pNo",
+				"type": "string"
+			}
+		],
+		"name": "setpNo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_province",
+				"type": "string"
+			}
+		],
+		"name": "setProvince",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_rDate",
+				"type": "string"
+			}
+		],
+		"name": "setrDate",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_recipirnts",
+				"type": "string"
+			}
+		],
+		"name": "setrecipirnts",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_registar",
+				"type": "string"
+			}
+		],
+		"name": "setRegistar",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_remark",
+				"type": "string"
+			}
+		],
+		"name": "setRemark",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_sName",
+				"type": "string"
+			}
+		],
+		"name": "setsName",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_south",
+				"type": "string"
+			}
+		],
+		"name": "setsouth",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_stamp",
+				"type": "string"
+			}
+		],
+		"name": "setStamp",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_tpNo",
+				"type": "string"
+			}
+		],
+		"name": "settpNo",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_Village",
+				"type": "string"
+			}
+		],
+		"name": "setVillage",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_west",
+				"type": "string"
+			}
+		],
+		"name": "setwest",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllasstNo",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllbfId",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllcId",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlldeedNo",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllDistrict",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlldsDiv",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlleast",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllgivers",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllGnDiv",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllkorala",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlllAuthority",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlllName",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlllotNd",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllnature",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllnorth",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllNotary",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllpattu",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllpNo",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllProvince",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllrDate",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllrecipirnts",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllRegistar",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllRemark",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllsName",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllsouth",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllStamp",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAlltpNo",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllVillage",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllwest",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getasstNo",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getbfId",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getcId",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getdeedNo",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getDistrict",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getdsDiv",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "geteast",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getgivers",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getGnDiv",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getkorala",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getlAuthority",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getlName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getlotNd",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getnature",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getnorth",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getNotary",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getpattu",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getpNo",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getProvince",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getrDate",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getrecipirnts",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getRegistar",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getRemark",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getsName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getsouth",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getStamp",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "gettpNo",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getVillage",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getwest",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+// create a contract instance
+const nameStoreContract = new web3.eth.Contract(contractABI, contractAddress);
+
+
+
+const printBtn = document.getElementById("ab");
+printBtn.addEventListener("click", () => {
+  const poojiDiv = document.getElementById("pooji");
+  const printContent = poojiDiv.outerHTML;
+  const originalBody = document.body.innerHTML;
+  document.body.innerHTML = printContent;
+  window.print();
+  document.body.innerHTML = originalBody;
+});
+
+var CheckBtn = document.getElementById("CheckBtn");
+
+CheckBtn.addEventListener("click", () => {
+				let index=document.getElementById("nameInput").value;
+				console.log("clicked element");
+				getbfId(index);
+
+		});
+		async function getbfId(index){
+			
+			
+			const name1 = await nameStoreContract.methods.getcId(index).call();
+			const name2 = await nameStoreContract.methods.getbfId(index).call();
+			const name3 = await nameStoreContract.methods.getlName(index).call();
+			const name4 = await nameStoreContract.methods.getpNo(index).call();
+			const name5 = await nameStoreContract.methods.getsName(index).call();
+			const name6 = await nameStoreContract.methods.getProvince(index).call();
+			const name7 = await nameStoreContract.methods.getDistrict(index).call();
+			const name8 = await nameStoreContract.methods.getdsDiv(index).call();
+			const name9 = await nameStoreContract.methods.getGnDiv(index).call();
+			const name10 = await nameStoreContract.methods.getlAuthority(index).call();
+			const name11 = await nameStoreContract.methods.getlotNd(index).call();
+			const name12 = await nameStoreContract.methods.gettpNo(index).call();
+			const name13 = await nameStoreContract.methods.getasstNo(index).call();
+			const name14 = await nameStoreContract.methods.getVillage(index).call();
+			const name15 = await nameStoreContract.methods.getpattu(index).call();
+			const name16 = await nameStoreContract.methods.getkorala(index).call();
+			const name17 = await nameStoreContract.methods.getnorth(index).call();
+			const name18 = await nameStoreContract.methods.getwest(index).call();
+			const name19 = await nameStoreContract.methods.getsouth(index).call();
+			const name20 = await nameStoreContract.methods.geteast(index).call();
+			const name21 = await nameStoreContract.methods.getrDate(index).call();
+			const name22 = await nameStoreContract.methods.getgivers(index).call();
+			const name23 = await nameStoreContract.methods.getrecipirnts(index).call();
+			const name24 = await nameStoreContract.methods.getnature(index).call();
+			const name25 = await nameStoreContract.methods.getdeedNo(index).call();
+			const name26 = await nameStoreContract.methods.getNotary(index).call();
+			const name27 = await nameStoreContract.methods.getStamp(index).call();
+			const name28 = await nameStoreContract.methods.getRegistar(index).call();
+			const name29 = await nameStoreContract.methods.getRemark(index).call();
+			document.getElementById("c1").innerHTML=("Title ID: "+name1);
+			document.getElementById("c2").innerHTML=("B.F Title ID: "+name2);
+			document.getElementById("c3").innerHTML=("Land Name: "+name3);
+			document.getElementById("c4").innerHTML=("Plan No: "+name4);
+			document.getElementById("c5").innerHTML=("Serveyor Name: "+name5);
+			document.getElementById("c6").innerHTML=("Province: "+name6);
+			document.getElementById("c7").innerHTML=("District: "+name7);
+			document.getElementById("c8").innerHTML=("D.S Division: "+name8);
+			document.getElementById("c9").innerHTML=("G.N Division: "+name9);
+			document.getElementById("c10").innerHTML=("Local Authority: "+name10);
+			document.getElementById("c11").innerHTML=("Lot No: "+name11);
+			document.getElementById("c12").innerHTML=("T.P No: "+name12);
+			document.getElementById("c13").innerHTML=("Asst No: "+name13);
+			document.getElementById("c14").innerHTML=("Village and Street: "+name14);
+			document.getElementById("c15").innerHTML=("Pattu: "+name15);
+			document.getElementById("c16").innerHTML=("Korala: "+name16);
+			document.getElementById("c17").innerHTML=("Boudaries North: "+name17);
+			document.getElementById("c18").innerHTML=("Boudaries West: "+name18);
+			document.getElementById("c19").innerHTML=("Boudaries South: "+name19);
+			document.getElementById("c20").innerHTML=("Boudaries East: "+name20);
+			document.getElementById("c21").innerHTML=("Date of Registry: "+name21);
+			document.getElementById("c22").innerHTML=("Givers: "+name22);
+			document.getElementById("c23").innerHTML=("Recipients: "+name23);
+			document.getElementById("c24").innerHTML=("Nature: "+name24);
+			document.getElementById("c25").innerHTML=("Deed No: "+name25);
+			document.getElementById("c26").innerHTML=("Notary Name: "+name26);
+			document.getElementById("c27").innerHTML=("Stamp Duty: "+name27);
+			document.getElementById("c28").innerHTML=("Signature of Regitar: "+name28);
+			document.getElementById("c29").innerHTML=("Remark: "+name29);
+
+
+		}
+
+
+
+</script>
